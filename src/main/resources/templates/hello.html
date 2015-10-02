@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello Twitter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+    <script src="../static/js/jquery-2.0.0.min.js" th:src="@{/js/jquery-2.0.0.min.js}" type="text/javascript"></script>
+    <script src="../static/js/main.js" th:src="@{/js/main.js}" type="text/javascript"></script>
+    <script src="../static/js/tagcanvas.min.js" th:src="@{/js/tagcanvas.min.js}" type="text/javascript"></script>
+    <script src="../static/js/sigma.min.js" th:src="@{/js/sigma.min.js}" type="text/javascript"></script>
+    <script src="../static/js/sigma.renderers.webgl.js" th:src="@{/js/sigma.renderers.webgl.js}" type="text/javascript"></script>
+    <script src="../static/js/sigma.parsers.json.js" th:src="@{/js/sigma.parsers.json.js}" type="text/javascript"></script>
+</head>
+<body>
+<h3>Hello, <span th:text="${twitterProfile.name}">Some User</span>!</h3>
+
+<h4>These are your friends:</h4>
+<table style="width: 100%; border: 1px solid #ccc">
+    <tbody>
+    <tr>
+        <td class="corner">
+            <div id="container">
+
+            </div>
+        </td>
+        <td class="middle">
+            <ul>
+                <li class="parent" th:each="friend:${friends}">
+                    <b th:text="${friend.name}"></b>
+                    <ol class="child" th:with="neighbors=${graph.getNeighbors(friend)}">
+                        <li th:each="neighbor:${neighbors}"
+                            th:text="${neighbor.name}"
+                            th:onclick="'javascript:getTags(\''+ ${neighbor.screenName} +'\');'">
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </td>
+        <td class="corrner">
+            <p>Tags cloud</p>
+            <div id="canvasContainer">
+                <canvas width="500" height="500" id="myCanvas">
+
+                </canvas>
+            </div>
+            <div id="tags">
+                <ul>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function() {
+        setupFriendsList();
+    });
+    //]]>
+</script>
+</body>
+</html>

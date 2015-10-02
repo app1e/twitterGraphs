@@ -1,0 +1,43 @@
+#container {
+    max-width: inherit;
+    min-width: 500;
+    height: 500px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+}
+
+#canvasContainer{
+    max-width: inherit;
+    min-width: 500;
+}
+
+.plusimageapply{
+    list-style-image:url(../img/plus.png);
+    cursor:pointer;
+}
+.minusimageapply{
+    list-style-image:url(../img/minus.png);
+    cursor:pointer;
+}
+
+.selectedimage{
+    list-style-image:url(../img/selected.png);
+    cursor:pointer;
+}
+
+.middle {
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.corner {
+    width: 50%
+}
+
+table tr {
+    vertical-align: top;
+}
+
+table {
+    border: 1px solid #ccc;
+}
